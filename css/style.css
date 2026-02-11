@@ -1,0 +1,43 @@
+    @keyframes scroll-right {
+
+        0% {
+
+            transform: translateX(0);
+
+        }
+
+        100% {
+
+            transform: translateX(-100%);
+
+        }
+
+    }
+
+    .scroll-container {
+
+        overflow: hidden;
+
+        display: flex;
+
+        width: 100%;
+
+    }
+
+    .scroll-wrapper {
+
+        display: flex;
+
+        animation: scroll-right 30s linear infinite;
+
+    }
+
+    .scroll-content {
+
+        display: flex;
+
+        gap: 5rem;
+
+        flex-shrink: 0;
+
+    }
