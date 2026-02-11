@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Document</title>
-     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/js/index.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/webp" href="assets/image/favicon_CSP-1.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -10,15 +12,426 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
+<!-- passar css -->
+<style>
+    @keyframes scroll-right {
+
+        0% {
+
+            transform: translateX(0);
+
+        }
+
+        100% {
+
+            transform: translateX(-100%);
+
+        }
+
+    }
+
+    .scroll-container {
+
+        overflow: hidden;
+
+        display: flex;
+
+        width: 100%;
+
+    }
+
+    .scroll-wrapper {
+
+        display: flex;
+
+        animation: scroll-right 30s linear infinite;
+
+    }
+
+    .scroll-content {
+
+        display: flex;
+
+        gap: 5rem;
+
+        flex-shrink: 0;
+
+    }
+</style>
+
 <body>
-</body>
- <footer
+    <header class="w-full fixed top-0 z-[9999] bg-white/5 backdrop-blur-[2px] border-b border-white/5">
+        <div class="flex justify-between items-center h-16 px-4 sm:px-11">
+            <a href="https://www.compresuapeca.com.br/">
+                <img src="assets/image/csplogo.webp" alt="Logo" class="h-12">
+            </a>
+
+            <!-- aumentar blur  -->
+            <!-- Desktop Menu -->
+            <nav class="hidden sm:flex items-center gap-10 text-sm text-white">
+                <a href="https://sualoja.compresuapeca.com.br/quem-somos/"
+                    class="hover:text-[#e3651c] hover:border-b-[1px] hover:border-[#e3651c] py-[6px]">Quem Somos</a>
+                <a href="https://sualoja.compresuapeca.com/"
+                    class="hover:text-[#e3651c] hover:border-b-[1px] hover:border-[#e3651c] py-[6px]">Sua Loja</a>
+                <a href="https://tech.compresuapeca.com/"
+                    class="hover:text-[#e3651c] hover:border-b-[1px] hover:border-[#e3651c] py-[6px]">Produtos Tech</a>
+
+                <details class="relative group">
+                    <summary
+                        class="cursor-pointer hover:text-[#e3651c] hover:border-b-[1px] hover:border-[#e3651c] py-[6px] flex items-center">
+                        Políticas
+                        <i class="fa-solid fa-chevron-down ml-1 transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="absolute left-0 mt-2 w-64 bg-[#2a0f35] text-white shadow-lg rounded-md z-50">
+                        <a href="https://sualoja.compresuapeca.com.br/garantia-trocas-devolucoes/"
+                            class="block px-4 py-3 hover:bg-[#8a281b8e]">Garantia, Troca e Devoluções</a>
+                        <a href="https://sualoja.compresuapeca.com.br/termos-de-uso/"
+                            class="block px-4 py-3 hover:bg-[#8a281b8e]">Termos de uso</a>
+                        <a href="https://sualoja.compresuapeca.com.br/politica-de-entrega/"
+                            class="block px-4 py-3 hover:bg-[#8a281b8e]">Política de Entrega</a>
+                        <a href="https://sualoja.compresuapeca.com.br/politica-de-privacidade/"
+                            class="block px-4 py-3 hover:bg-[#8a281b8e]">Políticas de Privacidade</a>
+                    </div>
+                </details>
+
+                <a href="http://blog.compresuapeca.com.br/"
+                    class="hover:text-[#e3651c] hover:border-b-[1px] hover:border-[#e3651c] py-[6px]">Blog da Compre Sua
+                    Peça</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuButton" class="text-[#e3651c] sm:hidden">
+                <i id="menuIcon" class="fa-solid fa-bars w-6 h-6"></i>
+            </button>
+        </div>
+
+
+        <div id="mobileMenu" class="sm:hidden hidden bg-[#3e1749] border-t border-[#e3651c]/20">
+            <div class="flex flex-col">
+                <a href="https://sualoja.compresuapeca.com.br/quem-somos/"
+                    class="text-white p-4 border-b border-[#e3651c]/20 hover:bg-[#e3651c]/20">Quem Somos</a>
+                <a href="https://sualoja.compresuapeca.com.br/"
+                    class="text-white p-4 border-b border-[#e3651c]/20 hover:bg-[#e3651c]/20">Sua Loja</a>
+                <a href="#" class="text-[#e3651c] p-4 border-b border-[#e3651c]/20 hover:bg-[#e3651c]/20">Produtos
+                    Tech</a>
+
+                <button id="policiesButton"
+                    class="text-white p-4 border-b border-[#e3651c]/20 hover:bg-[#e3651c]/20 flex justify-between items-center">
+                    Políticas
+                    <i id="policiesIcon" class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div id="policiesMenu" class="hidden bg-[#270b27]">
+                    <a href="https://sualoja.compresuapeca.com.br/garantia-trocas-devolucoes/"
+                        class="text-white p-4 pl-8 border-b border-[#e3651c]/20 hover:bg-[#e3651c]/20 block">Garantia,
+                        Troca e Devoluções</a>
+                    <a href="https://sualoja.compresuapeca.com.br/termos-de-uso/"
+                        class="text-white p-4 pl-8 border-b border-[#e3651c]/20 hover:bg-[#e3651c]/20 block">Termos de
+                        uso</a>
+                    <a href="https://sualoja.compresuapeca.com.br/politica-de-entrega/"
+                        class="text-white p-4 pl-8 border-b border-[#e3651c]/20 hover:bg-[#e3651c]/20 block">Política de
+                        Entrega</a>
+                    <a href="https://sualoja.compresuapeca.com.br/politica-de-privacidade/"
+                        class="text-white p-4 pl-8 border-b border-[#e3651c]/20 hover:bg-[#e3651c]/20 block">Políticas
+                        de Privacidade</a>
+                </div>
+
+                <a href="http://blog.compresuapeca.com.br/"
+                    class="text-white p-4 border-b-2 border-[#e3651c]/80 hover:bg-[#e3651c]/20">Blog do Compre Sua
+                    Peça</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-[#190026] ">
+        <div class="relative w-full">
+            <img class="w-full" src="/assets/image/fotodefundo.png" alt="Foto de Fundo">
+
+            <div class="absolute inset-0 flex flex-col items-start justify-start pl-20 pt-32 text-white">
+
+                <h1 class="text-6xl font-bold">
+                    DROPSHIPPING
+                </h1>
+
+                <p class="text-sm mt-6 max-w-xl">
+                    Você viu no webinar, agora é hora de vender sem investimento de peças com operação profissional.
+                </p>
+
+                <!-- Botões -->
+                <div class="flex gap-4 mt-8">
+                    <a href="#"
+                        class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-md transition">
+                        Comece agora
+                    </a>
+
+                    <a href="#"
+                        class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-md transition">
+                        Fale com um especialista
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+<!-- adicionar div -->
+        <div class="scroll-container bg-[#26003a] py-2">
+            <div class="scroll-wrapper">
+                <div class="scroll-content text-white text-sm ">
+                    <div
+                        class="flex justify-center items-center gap-2 bg-[#1b1b1b] border border-white rounded-lg px-4 py-2">
+                        <img src="assets/image/verify.png" alt="icone de verificação"
+                            class="w-6 h-6 bg-white rounded-md">
+                        <p class="capitalize whitespace-nowrap">
+                            Venda aprovada
+                        </p>
+                    </div>
+
+                    <div
+                        class="flex justify-center items-center gap-2 bg-[#1b1b1b] border border-white rounded-lg px-4 py-2">
+                        <img src="assets/image/verify.png" alt="icone de verificação"
+                            class="w-6 h-6 bg-white rounded-md">
+                        <p class="capitalize whitespace-nowrap">
+                            Venda aprovada
+                        </p>
+                    </div>
+
+                    <div
+                        class="flex justify-center items-center gap-2 bg-[#1b1b1b] border border-white rounded-lg px-4 py-2">
+                        <img src="assets/image/verify.png" alt="icone de verificação"
+                            class="w-6 h-6 bg-white rounded-md">
+                        <p class="capitalize whitespace-nowrap">
+                            Venda aprovada
+                        </p>
+                    </div>
+
+                    <div
+                        class="flex justify-center items-center gap-2 bg-[#1b1b1b] border border-white rounded-lg px-4 py-2">
+                        <img src="assets/image/verify.png" alt="icone de verificação"
+                            class="w-6 h-6 bg-white rounded-md">
+                        <p class="capitalize whitespace-nowrap">
+                            Venda aprovada
+                        </p>
+                    </div>
+
+                    <div
+                        class="flex justify-center items-center gap-2 bg-[#1b1b1b] border border-white rounded-lg px-4 py-2">
+                        <img src="assets/image/verify.png" alt="icone de verificação"
+                            class="w-6 h-6 bg-white rounded-md">
+                        <p class="capitalize whitespace-nowrap">
+                            Venda aprovada
+                        </p>
+                    </div>
+
+                    <div
+                        class="flex justify-center items-center gap-2 bg-[#1b1b1b] border border-white rounded-lg px-4 py-2">
+                        <img src="assets/image/verify.png" alt="icone de verificação"
+                            class="w-6 h-6 bg-white rounded-md">
+                        <p class="capitalize whitespace-nowrap">
+                            Venda aprovada
+                        </p>
+                    </div>
+
+                    <div
+                        class="flex justify-center items-center gap-2 bg-[#1b1b1b] border border-white rounded-lg px-4 py-2">
+                        <img src="assets/image/verify.png" alt="icone de verificação"
+                            class="w-6 h-6 bg-white rounded-md">
+                        <p class="capitalize whitespace-nowrap">
+                            Venda aprovada
+                        </p>
+                    </div>
+
+                    <div
+                        class="flex justify-center items-center gap-2 bg-[#1b1b1b] border border-white rounded-lg px-4 py-2">
+                        <img src="assets/image/verify.png" alt="icone de verificação"
+                            class="w-6 h-6 bg-white rounded-md">
+                        <p class="capitalize whitespace-nowrap">
+                            Venda aprovada
+                        </p>
+                    </div>
+
+                    <div
+                        class="flex justify-center items-center gap-2 bg-[#1b1b1b] border border-white rounded-lg px-4 py-2">
+                        <img src="assets/image/verify.png" alt="icone de verificação"
+                            class="w-6 h-6 bg-white rounded-md">
+                        <p class="capitalize whitespace-nowrap">
+                            Venda aprovada
+                        </p>
+                    </div>
+
+                    <div
+                        class="flex justify-center items-center gap-2 bg-[#1b1b1b] border border-white rounded-lg px-4 py-2">
+                        <img src="assets/image/verify.png" alt="icone de verificação"
+                            class="w-6 h-6 bg-white rounded-md">
+                        <p class="capitalize whitespace-nowrap">
+                            Venda aprovada
+                        </p>
+                    </div>
+
+                    <div
+                        class="flex justify-center items-center gap-2 bg-[#1b1b1b] border border-white rounded-lg px-4 py-2">
+                        <img src="assets/image/verify.png" alt="icone de verificação"
+                            class="w-6 h-6 bg-white rounded-md">
+                        <p class="capitalize whitespace-nowrap">
+                            Venda aprovada
+                        </p>
+                    </div>
+
+                    <div
+                        class="flex justify-center items-center gap-2 bg-[#1b1b1b] border border-white rounded-lg px-4 py-2">
+                        <img src="assets/image/verify.png" alt="icone de verificação"
+                            class="w-6 h-6 bg-white rounded-md">
+                        <p class="capitalize whitespace-nowrap">
+                            Venda aprovada
+                        </p>
+                    </div>
+
+                    <div
+                        class="flex justify-center items-center gap-2 bg-[#1b1b1b] border border-white rounded-lg px-4 py-2">
+                        <img src="assets/image/verify.png" alt="icone de verificação"
+                            class="w-6 h-6 bg-white rounded-md">
+                        <p class="capitalize ">
+                            Venda aprovada
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-[#190026] py-16">
+            <h2 class="text-3xl text-center text-white">
+                Por que <span class="text-purple-600">deve contratar</span> nossa solução <br>
+                <span class="font-bold text-6xl">DROPSHIPPING?</span>
+            </h2>
+
+            <div class="max-w-3xl mx-auto px-2 py-12">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- CARD 1 -->
+                    <div class="flex items-center gap-4 border border-white rounded-lg p-6 bg-transparent">
+
+                        <div>
+                            <img src="/assets/image/i1.png" alt="Ícone" class="w-10 h-10">
+                        </div>
+                        <div class="text-white text-sm">
+                            <p>
+                                Rede de fornecedores maiores e exclusivos
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div class="flex items-center gap-4 border border-white rounded-lg p-6 bg-transparent">
+
+                        <div>
+                            <img src="/assets/image/i2.png" alt="Ícone" class="w-10 h-10">
+                        </div>
+                        <div class="text-white text-sm">
+                            <p>
+                                Portfólio com foco em giro real
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div class="flex items-center gap-4 border border-white rounded-lg p-6 bg-transparent">
+                        <div>
+                            <img src="/assets/image/i3.png" alt="Ícone" class="w-10 h-10">
+                        </div>
+                        <div class="text-white text-sm">
+                            <p>
+                                Processo estruturado do pedido à entrega
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 4 -->
+                    <div class="flex items-center gap-4 border border-white rounded-lg p-6 bg-transparent">
+                        <div>
+                            <img src="/assets/image/i5.png" alt="Ícone" class="w-10 h-10">
+                        </div>
+                        <div class="text-white text-sm">
+                            <p>
+                                Gestão contínua para escalar com previsibilidade
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="px-6 py-20 bg-[#190026]">
+
+            <div class="max-w-6xl mx-auto bg-[#0d0229] rounded-2xl p-12 flex flex-col md:flex-row gap-12 text-white">
+
+                <div
+                    class="bg-purple-700 rounded-2xl flex-shrink-0 w-full md:w-3/5 flex items-center justify-center p-6">
+                    <iframe width="100%" height="315" src="" title="" frameborder="0" allowfullscreen></iframe>
+                </div>
+
+                <!-- Bloco do texto -->
+                <div class="flex flex-col justify-center md:w-2/5 text-left">
+                    <p class="text-xl mb-4">
+                        Como funciona nossa<br>
+                        <strong class="font-bold text-white text-5xl">solução?</strong>
+                    </p>
+
+                    <ul class="list-disc list-inside text-base space-y-3 text-gray-300 leading-relaxed">
+                        <li>Diagnosticar seu cenário atual e definir o plano de entrada</li>
+                        <li>Conectar sua operação a fornecedores estratégicos, incluindo parceiros maiores e
+                            exclusivos
+                        </li>
+                        <li>Estruturar catálogo, anúncios e regras comerciais</li>
+                        <li>Organizar o fluxo completo, pedido, aprovação, acionamento do fornecedor, envio e
+                            atendimento ao cliente</li>
+                        <li>Acompanhar os resultados e otimizar continuamente para aumentar conversão e faturamento
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-6 py-16 bg-[#190026] text-center">
+            <!-- Texto -->
+            <h2 class="text-3xl text-white mb-7">
+                Implantamos sua operação de <br>
+                <span class="font-bold text-5xl text-violet-800">DROPSHIPPING</span> <br>
+                no setor <span class="font-bold">automotivo</span>
+            </h2>
+
+            <img src="/assets/image/imagem2.png" alt="Imagem ilustrativa" class="mx-auto rounded-2xl w-11/12 md:w-3/4">
+        </div>
+
+        <div class="px-6 py-20 bg-[#190026] flex flex-col items-center justify-center">
+            <div class="flex gap-6 mt-8">
+                <a href="#"
+                    class="bg-transparent text-white font-semibold px-10 py-4 rounded-md transition border border-white hover:bg-white hover:text-[#190026]">
+                    Sou vendedor
+                </a>
+
+                <a href="#"
+                    class="bg-transparent text-white font-semibold px-10 py-4 rounded-md transition border border-white hover:bg-white hover:text-[#190026]">
+                    Sou fornecedor
+                </a>
+            </div>
+
+            <div class="px-6 py-16 bg-[#190026] text-center mt-12">
+                <img src="/assets/image/group7.png" alt="Imagem ilustrativa"
+                    class="mx-auto rounded-2xl w-11/12 md:w-3/4">
+            </div>
+        </div>
+    </div>
+
+    <footer
         class="text-white py-[2rem] h-[auto] flex flex-col items-center justify-center bg-[#E3651C] px-4 sm:px-[6.25rem]">
 
         <div class="w-full sm:container sm:grid-container sm:gap-20 sm:grid sm:grid-cols-4 sm:p-[1.25rem] sm:w-full
-                flex flex-col gap-8 font-medium">
+                   flex flex-col gap-8 font-medium">
 
-            <div class="coluna flex flex-col items-center sm:items-start">
+            <div class="coluna flex flex-col items-center sm:items-start font-bold">
                 <h3 class="text-[#3e1749] text-[1.2rem] sm:text-[1.4rem]">Institucional</h3>
                 <ul class="text-center sm:text-left">
                     <li><a class="text-[0.85rem] sm:text-[0.9rem] transition duration-500 hover:text-[#3e1749]"
@@ -36,9 +449,12 @@
             <div class="coluna flex flex-col py-5 sm:py-0 items-center sm:items-start">
                 <h3 class="font-bold text-[#3e1749] text-[1.2rem] sm:text-[1.4rem]">Ajuda</h3>
                 <ul class="text-center sm:text-left">
-                    <li><a class="text-[0.85rem] sm:text-[0.9rem] hover:text-[#3e1749]" href="#">Minha conta</a></li>
-                    <li><a class="text-[0.85rem] sm:text-[0.9rem] hover:text-[#3e1749]" href="#">Meus Pedidos</a></li>
-                    <li><a class="text-[0.85rem] sm:text-[0.9rem] hover:text-[#3e1749]" href="#">Fale Conosco</a></li>
+                    <li><a class="text-[0.85rem] sm:text-[0.9rem] hover:text-[#3e1749]" href="#">Minha conta</a>
+                    </li>
+                    <li><a class="text-[0.85rem] sm:text-[0.9rem] hover:text-[#3e1749]" href="#">Meus Pedidos</a>
+                    </li>
+                    <li><a class="text-[0.85rem] sm:text-[0.9rem] hover:text-[#3e1749]" href="#">Fale Conosco</a>
+                    </li>
                 </ul>
             </div>
 
@@ -62,11 +478,18 @@
             <div class="flex flex-col items-center sm:items-start">
                 <h3 class="hidden sm:flex font-bold text-[#3e1749] text-[1.2rem] sm:text-[1.4rem]">Redes</h3>
                 <ul class="flex gap-4">
-                    <li><a href="https://www.facebook.com/Compresuape%C3%A7a-103286095141033" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook text-[#3E1749] text-xl"></i></a></li>
-                    <li><a href="https://www.instagram.com/compresuapeca/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram text-[#3E1749] text-xl"></i></a></li>
-                    <li><a href="https://www.youtube.com/@Compresuapeca" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube text-[#3E1749] text-xl"></i></a></li>
-                    <li><a href="https://www.linkedin.com/company/compresuapeca" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin text-[#3E1749] text-xl"></i></a></li>
-                    <li><a href="https://www.tiktok.com/@compresuapeca" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok text-[#3E1749] text-xl"></i></a></li>
+                    <li><a href="https://www.facebook.com/Compresuape%C3%A7a-103286095141033" target="_blank"
+                            rel="noopener noreferrer"><i class="fa-brands fa-facebook text-[#3E1749] text-xl"></i></a>
+                    </li>
+                    <li><a href="https://www.instagram.com/compresuapeca/" target="_blank" rel="noopener noreferrer"><i
+                                class="fa-brands fa-instagram text-[#3E1749] text-xl"></i></a></li>
+                    <li><a href="https://www.youtube.com/@Compresuapeca" target="_blank" rel="noopener noreferrer"><i
+                                class="fa-brands fa-youtube text-[#3E1749] text-xl"></i></a></li>
+                    <li><a href="https://www.linkedin.com/company/compresuapeca" target="_blank"
+                            rel="noopener noreferrer"><i class="fa-brands fa-linkedin text-[#3E1749] text-xl"></i></a>
+                    </li>
+                    <li><a href="https://www.tiktok.com/@compresuapeca" target="_blank" rel="noopener noreferrer"><i
+                                class="fa-brands fa-tiktok text-[#3E1749] text-xl"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -74,7 +497,7 @@
         <!-- Rodapé inferior -->
         <div class="text-center sm:flex sm:text-left gap-1 items-center mt-6 w-full">
             <div class="w-full sm:container sm:grid-container sm:gap-5 sm:grid sm:grid-cols-3 sm:p-[1.25rem] sm:w-full
-                   flex flex-col gap-2 items-center">
+                      flex flex-col gap-2 items-center">
 
                 <p class="text-[0.4rem] sm:text-[0.6rem] text-center sm:text-left">
                     © 2024 – COMPRE SUA PEÇA – TODOS OS DIREITOS RESERVADOS
@@ -89,13 +512,7 @@
                 </p>
             </div>
         </div>
-
-        <a href="https://wa.me/11944909162" target="_blank" rel="noopener noreferrer"
-            class="whatsapp-button fixed bottom-5 right-5 bg-[#ebe1e1] rounded-full p-2 px-3 transition-colors duration-500 hover:bg-[#128c7e] shadow-[7px_5px_rgba(0,0,0,0.411)] z-50">
-            <i class="fa-brands fa-whatsapp text-[2.5rem] sm:text-[2.3rem] text-green-700 hover:text-white"></i>
-        </a>
     </footer>
-
-    <script src="/js/index.js"></script>
+</body>
 
 </html>
